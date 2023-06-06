@@ -34,13 +34,39 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'alpha'],
+            'first_surname' => ['required', 'string', 'max:255', 'alpha'],
+            'second_surname' => ['required', 'string', 'max:255', 'alpha','unique:users'],
+            'nickname' => ['required', 'string', 'max:255'],
+            'locality' => ['required', 'string', 'max:255','alpha'],
+            'birthday' => ['required','date'],
+            'telephone' => ['required', 'digits:9','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password_confirmation' => ['required'],
+        ],[
+            'email.unique' => 'El correo electronico ya esta registrado.'
+
+        ],[
+            'name' => 'nombre',
+            'first_surname' => 'primer apellido',
+            'second_surname' => 'segundo apellido',
+            'nickname' => 'nombre de usuario',
+            'locality' => 'localidad',
+            'birthday' => 'fecha de nacimiento',
+            'telephone' => 'telefono',
+            'password' => 'contraseña',
+            'password_confirmation' => 'confirmacion de contraseña',
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'first_surname' => $request->first_surname,
+            'second_surname' => $request->second_surname,
+            'nickname' => $request->nickname,
+            'locality' => $request->locality,
+            'birthday' => $request->birthday,
+            'telephone' => $request->telephone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
