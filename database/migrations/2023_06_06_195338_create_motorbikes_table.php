@@ -14,11 +14,15 @@ class CreateMotorbikesTable extends Migration
     public function up()
     {
         Schema::create('motorbikes', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
+            
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('brand');
             $table->string('model');
             $table->integer('year');
+            $table->string('registration_number')->unique();
             $table->string('adquired_at');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

@@ -14,6 +14,13 @@ class Motorbike extends Model
         'model',
         'year',
         'adquired_at',
+        'registration_number',
         'user_id',
     ];
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
 }

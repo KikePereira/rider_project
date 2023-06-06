@@ -42,7 +42,7 @@ class RegisteredUserController extends Controller
             'birthday' => ['required','date'],
             'telephone' => ['required', 'digits:9','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', 'min:8', 'regex:/^(?=.*[a-zA-Z])(?=.*\d)/'],
             'password_confirmation' => ['required'],
         ],[
             'email.unique' => 'El correo electronico ya esta registrado.'

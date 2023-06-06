@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MotorbikeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +19,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::middleware(['auth'])->group(function () {
+
+//PROFILE
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+//MOTORBIKE
+Route::get('/motorbikes/create', [MotorbikeController::class, 'create'])->name('motorbikes.create');
+Route::post('/motorbikes', [MotorbikeController::class, 'store'])->name('motorbikes.store');
+Route::delete('/motorbike/{motorbike}', [MotorbikeController::class, 'destroy'])->name('motorbike.destroy');
+
 });
 
 Route::get('/dashboard', function () {
