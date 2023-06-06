@@ -69,4 +69,10 @@ class MotorbikeController extends Controller
     // Si el usuario no tiene una motocicleta, redireccionar a la página de perfil con un mensaje de error
     return redirect()->route('profile')->with('error', 'No se encontró una motocicleta para eliminar.');
 }
+
+public function confirmDelete(Motorbike $motorbike)
+{
+    return view('motorbike.confirm-delete', compact('motorbike'));
+}
+
 }

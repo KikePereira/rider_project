@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Carbon\Carbon;
 
 class RegisteredUserController extends Controller
 {
@@ -39,7 +40,7 @@ class RegisteredUserController extends Controller
             'second_surname' => ['required', 'string', 'max:255', 'alpha','unique:users'],
             'nickname' => ['required', 'string', 'max:255'],
             'locality' => ['required', 'string', 'max:255','alpha'],
-            'birthday' => ['required','date'],
+            'birthday' => ['required', 'date', 'before:' . Carbon::now()->subYears(18)->format('Y-m-d') . ',El cumpleaños debe ser al menos 18 años antes de la fecha actual.'],
             'telephone' => ['required', 'digits:9','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', 'min:8', 'regex:/^(?=.*[a-zA-Z])(?=.*\d)/'],

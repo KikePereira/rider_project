@@ -21,4 +21,25 @@ class ProfileController extends Controller
 
         return redirect()->route('profile')->with('success', 'Perfil actualizado exitosamente.');
     }
+
+    public function destroy($id)
+{
+    $user = User::find($id);
+
+    // Verificar si el usuario tiene una motorbike asociada y eliminarla si es necesario
+    if ($user->motorbike) {
+        $user->motorbike->delete();
+    }
+
+    // Eliminar el usuario
+    $user->delete();
+
+    return redirect()->route('login');
+}
+
+public function confirmDelete()
+{
+    return view('profile.confirm-delete');
+}
+
 }

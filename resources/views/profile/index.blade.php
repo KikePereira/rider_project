@@ -18,7 +18,9 @@
                     <p><strong>Cumpleaños: </strong>{{ Auth::user()->birthday }}</p>
                     <p><strong>Localidad: </strong>{{ Auth::user()->locality }}</p>
                     <p><strong>Telefono: </strong>{{ Auth::user()->telephone }}</p>
-
+                    <br>
+                    <a href="{{ route('profile.confirm-delete', Auth::user()->id) }}" class="text-danger">Eliminar perfil</a>
+                    <br>
                     <!-- Verificar si el usuario tiene una motocicleta -->
                     @if (!Auth::user()->motorbike)
                     <div class="alert alert-warning mt-4 text-center">
@@ -35,8 +37,8 @@
                     <h1 class="text-lg font-medium mb-4"><strong>{{Auth::user()->motorbike->brand}} {{Auth::user()->motorbike->model}} {{Auth::user()->motorbike->year}}</strong></h1>
                     <p><strong>Matricula:</strong> {{ Auth::user()->motorbike->registration_number }}</p>
                     <p><strong>Fecha de adquisicion:</strong> {{ Auth::user()->motorbike->adquired_at }}</p>
-
-            
+                    <br>
+                    <a href="{{ route('motorbike.confirm-delete', Auth::user()->motorbike->id) }}" class="text-danger">Eliminar motocicleta</a>
                     @endif
 
                     <!-- Opciones adicionales -->

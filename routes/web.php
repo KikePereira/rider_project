@@ -18,19 +18,27 @@ use App\Http\Controllers\MotorbikeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 Route::middleware(['auth'])->group(function () {
 
 //PROFILE
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::get('/profile/{motorbike}/confirm-delete', [ProfileController::class, 'confirmDelete'])->name('profile.confirm-delete');
+Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 //MOTORBIKE
-Route::get('/motorbikes/create', [MotorbikeController::class, 'create'])->name('motorbikes.create');
-Route::post('/motorbikes', [MotorbikeController::class, 'store'])->name('motorbikes.store');
 Route::delete('/motorbike/{motorbike}', [MotorbikeController::class, 'destroy'])->name('motorbike.destroy');
 
+});
+
+Route::get('/motorbike/{motorbike}/confirm-delete', [MotorbikeController::class, 'confirmDelete'])->name('motorbike.confirm-delete');
+
+
+Route::group(['middleware' => ['auth', 'check.motorbike']], function () {
+    Route::get('/motorbikes/create', [MotorbikeController::class, 'create'])->name('motorbikes.create');
+    Route::post('/motorbikes', [MotorbikeController::class, 'store'])->name('motorbikes.store');
 });
 
 Route::get('/dashboard', function () {

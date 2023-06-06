@@ -16,7 +16,7 @@
                             @error('brand')
                                 <span class="text-danger text-sm mt-1">{{ $message }}</span>
                             @enderror
-                            <input type="text" name="brand" id="brand" class="form-control">
+                            <input type="text" name="brand" id="brand" class="form-control" value="{{ old('brand') }}">
                         </div>
 
                         <div class="mb-4">
@@ -24,7 +24,7 @@
                             @error('model')
                                 <span class="text-danger text-sm mt-1">{{ $message }}</span>
                             @enderror
-                            <input type="text" name="model" id="model" class="form-control">
+                            <input type="text" name="model" id="model" class="form-control" value="{{ old('model') }}">
                         </div>
 
                         <div class="mb-4">
@@ -32,7 +32,7 @@
                             @error('year')
                                 <span class="text-danger text-sm mt-1">{{ $message }}</span>
                             @enderror
-                            <input type="number" name="year" id="year" class="form-control" min="1900" max="{{ date('Y') }}" placeholder="YYYY">
+                            <input type="number" name="year" id="year" class="form-control" min="1900" max="{{ date('Y') }}" placeholder="YYYY" value="{{ old('year') }}">
                         </div>
 
 
@@ -41,7 +41,7 @@
                             @error('adquired_at')
                                 <span class="text-danger text-sm mt-1">{{ $message }}</span>
                             @enderror
-                            <input type="date" name="adquired_at" id="adquired_at" class="form-control">
+                            <input type="date" name="adquired_at" id="adquired_at" class="form-control" value="{{ old('adquired_at') }}">
                         </div>
 
                         <div class="mb-4">
@@ -49,7 +49,7 @@
                             @error('registration_number')
                                 <span class="text-danger text-sm mt-1">{{ $message }}</span>
                             @enderror
-                            <input type="text" name="registration_number" id="registration_number" class="form-control">
+                            <input type="text" name="registration_number" id="registration_number" class="form-control" value="{{ old('registration_number') }}">
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
