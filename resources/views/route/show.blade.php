@@ -29,8 +29,8 @@
                     </div>
                     <div class="mt-2 mb-2">
                     @if(Auth::check() && $route->user_id == Auth::user()->id)
-                    <a href="{{ route('route.edit', $route->id) }}" class="btn btn-warning">Editar ruta</a>
-                    <a href="{{ route('route.confirm-delete', $route->id) }}" class="btn btn-danger">Eliminar ruta</a>
+                    <a href="{{ route('route.edit', $route->id) }}" class="mr-2">Editar ruta</a>
+                    <a href="{{ route('route.confirm-delete', $route->id) }}" class="text-danger ml-2">Eliminar ruta</a>
                     @endif
                     </div>
                     <br>

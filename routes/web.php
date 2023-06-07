@@ -44,6 +44,7 @@ Route::get('/route/{route}/edit', [RouteController::class, 'edit'])->name('route
 Route::put('/route/{route}', [RouteController::class, 'update'])->name('route.update');
 Route::get('route/{id}/confirm-delete', [RouteController::class, 'confirmDelete'])->name('route.confirm-delete');
 Route::delete('route/{id}', [RouteController::class, 'destroy'])->name('route.destroy');
+Route::get('/routes/search', [HomeController::class, 'search'])->name('route.search');
 
 
 

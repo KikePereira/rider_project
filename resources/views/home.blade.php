@@ -1,9 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            {{ __('Inicio') }}
-        </h2>
-        <a href="{{ route('route.create') }}" class="btn btn-primary mt-2">Añadir ruta</a>
+        <div class="row">
+        <div class="col-12 col-md-6">
+            <a href="{{ route('route.create') }}" class="btn btn-primary mt-2 form-control">Añadir ruta</a>
+        </div>
+        <div class=" col-12 col-md-6">
+            <form action="{{ route('route.search') }}" method="GET">
+                <div class="">
+                    <input type="text" name="nickname" id="nickname" class="mt-2 form-control" placeholder="Ingrese el nombre del usuario">
+                    <button type="submit" class="text-primary">Buscar</button>
+                </div>
+            </form>
+        </div>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -14,7 +23,7 @@
                         <div class="grid grid-cols-2 gap-4 row">
                         <div class="col-6">
                                 <h1 class="text-lg font-medium mb-4"> <strong>{{ $route->title }} </strong> </h1>
-                                <h3>{{ $route->user->name }} {{ $route->user->first_surname }} {{ $route->user->second_surname }}</h3>
+                                <h3> <strong>{{ $route->user->nickname }}</strong> <span class="text-secondary">({{ $route->user->name }} {{ $route->user->first_surname }} {{ $route->user->second_surname }})</span></h3>
                                 <br>
                                 <p>{{ $route->description }}</p>
                                 <!-- Muestra otros detalles de la ruta según tus necesidades -->
@@ -70,5 +79,9 @@
                 </script>
             @endforeach
         </div>
+        <div class="pagination d-flex justify-content-center">
+            {{ $routes->render('pagination::bootstrap-4') }}
+        </div>
+
     </div>
 </x-app-layout>

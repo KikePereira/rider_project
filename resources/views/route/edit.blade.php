@@ -56,9 +56,7 @@
                         <!-- Otros campos de la ruta -->
 
                         <div class="flex items-center justify-end mt-4">
-                            <x-button>
-                                {{ __('Guardar cambios') }}
-                            </x-button>
+                            <input type="submit" class="text-primary">
                         </div>
                     </form>
                 </div>
