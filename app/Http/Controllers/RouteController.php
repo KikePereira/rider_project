@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Route;
+use App\Models\comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -159,5 +160,21 @@ class RouteController extends Controller
         $route->likes()->detach($user->id);
         
         return back();
+    }
+
+    public function comment(Request $request, $id)
+    {
+        // Validar los datos del formulario de comentarios si es necesario
+
+        // Crear un nuevo comentario
+        $comment = new Comment();
+        $comment->route_id = $id;
+        $comment->user_id = auth()->user()->id; // Obtener el ID del usuario actualmente autenticado
+        $comment->content = $request->input('content');
+        $comment->save();
+
+        // Redireccionar a la página de la ruta o realizar cualquier otra acción después de guardar el comentario
+
+        return redirect()->route('route.show', $id);
     }
 }
