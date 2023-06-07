@@ -29,6 +29,8 @@
                                 <!-- Muestra otros detalles de la ruta según tus necesidades -->
                             </div>
 
+                            <span>{{ $route->likes()->count() }} Likes</span>
+
                             <div class="">
                                 <div id="map-{{ $route->id }}" style="width: auto; height:200px;"></div>
                             </div>
