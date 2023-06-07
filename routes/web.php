@@ -40,6 +40,13 @@ Route::get('/profile/update', [ProfileController::class, 'edit'])->name('profile
 Route::get('/route/create', [RouteController::class, 'create'])->name('route.create');
 Route::post('/route', [RouteController::class, 'store'])->name('route.store');
 Route::get('/route/{id}', [RouteController::class, 'show'])->name('route.show');
+Route::get('/route/{route}/edit', [RouteController::class, 'edit'])->name('route.edit');
+Route::put('/route/{route}', [RouteController::class, 'update'])->name('route.update');
+Route::get('route/{id}/confirm-delete', [RouteController::class, 'confirmDelete'])->name('route.confirm-delete');
+Route::delete('route/{id}', [RouteController::class, 'destroy'])->name('route.destroy');
+
+
+
 
 
 

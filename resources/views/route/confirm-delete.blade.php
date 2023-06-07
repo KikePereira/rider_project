@@ -27,14 +27,14 @@
                             <div id="map" style="width: 100%; height:600px;"></div>
                         </div>
                     </div>
-                    <div class="mt-2 mb-2">
-                    @if(Auth::check() && $route->user_id == Auth::user()->id)
-                    <a href="{{ route('route.edit', $route->id) }}" class="btn btn-warning">Editar ruta</a>
-                    <a href="{{ route('route.confirm-delete', $route->id) }}" class="btn btn-danger">Eliminar ruta</a>
-                    @endif
-                    </div>
                     <br>
-                    <a href="{{ url()->previous() }}" class="btn btn-primary form-control">Volver</a>
+                    <form action="{{ route('route.destroy', $route->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" class="text-danger mr-2" value="Eliminar">
+                        <a href="{{ url()->previous() }}" class="text-primary ml-2">Cancelar</a>
+
+                    </form>
                 </div>
             </div>
 

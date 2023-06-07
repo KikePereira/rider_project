@@ -80,7 +80,7 @@ class RouteController extends Controller
      */
     public function edit(Route $route)
     {
-        return view('routes.edit', compact('route'));
+        return view('route.edit', compact('route'));
     }
 
     /**
@@ -94,26 +94,50 @@ class RouteController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required',
-            'start_location' => 'required',
-            'end_location' => 'required',
-            'polyline' => 'required',
+            'description' => 'required',
+            'start_location_lat' => 'required',
+            'start_location_lng' => 'required',
+            'end_location_lat' => 'required',
+            'end_location_lng' => 'required',
+        ],[
+
+        ],[
+            'title' => 'titulo',
+            'description' => 'descripcion',
+            'start_location_lat' => 'Punto de inicio',
+            'start_location_lng' => 'Punto de inicio',
+            'end_location_lat' => 'Punto de llegada',
+            'end_location_lng' => 'Punto de llegada',
+
         ]);
 
-        $route->update($validatedData);
+        $route = new Route();
+        $route->user_id = Auth::user()->id;
+        $route->title = $request->title;
+        $route->description = $request->description;
+        $route->start_location_lat = $request->start_location_lat;
+        $route->start_location_lng = $request->start_location_lng;
+        $route->end_location_lat = $request->end_location_lat;
+        $route->end_location_lng = $request->end_location_lng;
 
-        return redirect()->route('routes.index')->with('success', 'La ruta de moto ha sido actualizada correctamente.');
+        $route->save();
+
+        return redirect()->route('route.show', $route->id);
     }
 
-    /**
-     * Eliminar una ruta de moto de la base de datos.
-     *
-     * @param  \App\Models\Route  $route
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Route $route)
+    public function destroy($id)
     {
+        $route = Route::find($id);
         $route->delete();
 
-        return redirect()->route('routes.index')->with('success', 'La ruta de moto ha sido eliminada correctamente.');
+        return redirect()->route('home');
+    }
+
+    public function confirmDelete($id)
+    {
+        // Obtener la ruta por su ID
+        $route = Route::find($id);
+
+        return view('route.confirm-delete', compact('route'));
     }
 }
