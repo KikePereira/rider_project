@@ -35,6 +35,8 @@ Route::post('/profile', [ProfileController::class, 'update'])->name('profile.upd
 Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 Route::get('/profile/update', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::get('/user/{id}', [ProfileController::class, 'user_profile'])->name('user.profile');
+
 
 //ROUTES
 Route::get('/route/create', [RouteController::class, 'create'])->name('route.create');

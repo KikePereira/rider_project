@@ -88,4 +88,11 @@ class ProfileController extends Controller
         // Redirigir al perfil con un mensaje de éxito
         return redirect()->route('profile');
     }
+
+    public function user_profile($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('profile.show', compact('user'));
+    }
 }

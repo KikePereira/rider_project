@@ -23,7 +23,13 @@
                         <div class="grid grid-cols-2 gap-4 row">
                         <div class="col-6">
                                 <h1 class="text-lg font-medium mb-4"> <strong>{{ $route->title }} </strong> </h1>
-                                <h3> <strong>{{ $route->user->nickname }}</strong> <span class="text-secondary">({{ $route->user->name }} {{ $route->user->first_surname }} {{ $route->user->second_surname }})</span></h3>
+                                @if ($route->user->id === Auth::user()->id)
+                                <a href="{{ route('profile') }}" class="">
+                                @else
+                                <a href="{{ route('user.profile', $route->user->id) }}" class="">
+                                @endif
+                                    <h3> <strong>{{ $route->user->nickname }}</strong> <span class="text-secondary">({{ $route->user->name }} {{ $route->user->first_surname }} {{ $route->user->second_surname }})</span></h3>
+                                </a>
                                 <br>
                                 <p>{{ $route->description }}</p>
                                 <!-- Muestra otros detalles de la ruta según tus necesidades -->

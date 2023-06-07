@@ -16,10 +16,16 @@
 
                             <!-- USUARIO -->
                             <br>
-                            <p><strong> Usuario: </strong> {{ $route->user->name}} {{ $route->user->first_surname }} {{ $route->user->second_surname }}</p>
-                            @if($route->user->motorbike)
-                            <p> <strong> Moto: </strong> {{ $route->user->motorbike->brand }} {{ $route->user->motorbike->model }} {{ $route->user->motorbike->year }}</p>
+                            @if ($route->user->id === Auth::user()->id)
+                                <a href="{{ route('profile') }}" class="">
+                            @else
+                                <a href="{{ route('user.profile', $route->user->id) }}" class="">
                             @endif
+                                <p><strong>{{$route->user->nickname}} </strong> <span class="text-secondary">({{ $route->user->name}} {{ $route->user->first_surname }} {{ $route->user->second_surname }})</span></p>
+                                @if($route->user->motorbike)
+                                <p> <strong> Moto: </strong> {{ $route->user->motorbike->brand }} {{ $route->user->motorbike->model }} {{ $route->user->motorbike->year }}</p>
+                                @endif
+                            </a>
                             <p class="d-flex justify-content-end text-secondary">{{ $route->created_at }}</p>
                         </div>
 
@@ -67,7 +73,13 @@
             <div >
             @foreach ($route->comments as $comment)
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4 p-2">
-                    <h4> <strong>{{ $comment->user->nickname }}</strong></h4>
+                    @if ($comment->user->id === Auth::user()->id)
+                        <a href="{{ route('profile') }}" class="">
+                    @else
+                        <a href="{{ route('user.profile', $comment->user->id) }}" class="">
+                    @endif
+                    <h4> <strong>{{ $comment->user->nickname }}</strong> <span class="text-secondary">({{ $route->user->name}} {{ $route->user->first_surname }} {{ $route->user->second_surname }})</span></h4>
+                    </a>
                     <p class="mt-2">{{ $comment->content }}</p>
 
                     <small class="d-flex justify-content-end text-secondary"> 
