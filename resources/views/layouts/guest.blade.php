@@ -7,6 +7,10 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+              <!-- Google maps -->
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuLSpknm3IhzaqS5KJodp18NEOO8_LgzA&callback=initMap" async
+        defer></script>
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
