@@ -137,4 +137,27 @@ class RouteController extends Controller
 
         return view('route.confirm-delete', compact('route'));
     }
+
+    public function like($id)
+    {
+        $route = Route::find($id);
+
+        // Verificar si el usuario ya dio like a la ruta
+        if (!$route->likes()->where('user_id', Auth::id())->exists()) {
+            // Agregar el like a la ruta
+            $route->likes()->attach(Auth::id());
+        }
+
+        return redirect()->back();
+    }
+
+    public function unlike($id)
+    {
+        $route = Route::findOrFail($id);
+        $user = Auth::user();
+        
+        $route->likes()->detach($user->id);
+        
+        return back();
+    }
 }

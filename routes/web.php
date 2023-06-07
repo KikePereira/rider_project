@@ -46,6 +46,9 @@ Route::get('route/{id}/confirm-delete', [RouteController::class, 'confirmDelete'
 Route::delete('route/{id}', [RouteController::class, 'destroy'])->name('route.destroy');
 Route::get('/routes/search', [HomeController::class, 'search'])->name('route.search');
 
+Route::post('/route/{id}/like', [RouteController::class, 'like'])->name('route.like');
+Route::delete('/route/{id}/unlike', [RouteController::class, 'unlike'])->name('route.unlike');
+
 
 
 

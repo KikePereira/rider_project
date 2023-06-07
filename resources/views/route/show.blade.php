@@ -27,6 +27,25 @@
                             <div id="map" style="width: 100%; height:600px;"></div>
                         </div>
                     </div>
+
+
+                    @if($route->likedByCurrentUser())
+                        <form action="{{ route('route.unlike', $route->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <span>{{ $route->likes()->count() }} Likes</span>
+
+                            <button type="submit" class="text-danger">Quitar Like</button>
+                        </form>
+                    @else
+                        <form action="{{ route('route.like', $route->id) }}" method="POST">
+                            @csrf
+                            <span>{{ $route->likes()->count() }} Likes</span>
+
+                            <button type="submit" class="text-success">Like</button>
+                        </form>
+                    @endif
+
                     <div class="mt-2 mb-2">
                     @if(Auth::check() && $route->user_id == Auth::user()->id)
                     <a href="{{ route('route.edit', $route->id) }}" class="mr-2">Editar ruta</a>
