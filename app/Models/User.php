@@ -58,4 +58,8 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function favoriteRoutes()
+    {
+        return $this->belongsToMany(Route::class, 'favorites', 'user_id', 'route_id');
+    }
 }

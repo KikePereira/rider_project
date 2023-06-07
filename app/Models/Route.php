@@ -41,4 +41,19 @@ class Route extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'route_id', 'user_id');
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'route_id', 'user_id');
+    }
+    
+    public function isFavorite()
+    {
+        return $this->favorites()->where('user_id', auth()->id())->exists();
+    }
+    
 }

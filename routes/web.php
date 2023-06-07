@@ -54,10 +54,9 @@ Route::delete('/route/{id}/unlike', [RouteController::class, 'unlike'])->name('r
 Route::post('/route/{id}/comment', [RouteController::class, 'comment'])->name('route.comment');
 Route::delete('/comments/{id}', [RouteController::class, 'comment_destroy'])->name('comment.destroy');
 
-
-
-
-
+Route::post('route/{id}/favorite', [RouteController::class, 'favorite'])->name('route.favorite');
+Route::post('route/{id}/unfavorite', [RouteController::class, 'unfavorite'])->name('route.unfavorite');
+Route::get('/favorites', [RouteController::class, 'favorites'])->name('route.favorites');
 
 //MOTORBIKE
 Route::delete('/motorbike/{motorbike}', [MotorbikeController::class, 'destroy'])->name('motorbike.destroy');

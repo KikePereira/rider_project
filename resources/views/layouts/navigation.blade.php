@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Inicio') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('route.favorites')" :active="request()->routeIs('home')">
+                        {{ __('Favoritas') }}
+                    </x-nav-link>
                 </div>
             </div>
 

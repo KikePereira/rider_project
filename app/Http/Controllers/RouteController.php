@@ -187,6 +187,33 @@ class RouteController extends Controller
             $comment->delete();
         }
 
-        return redirect()->back()->with('success', 'Comentario eliminado exitosamente');
+        return redirect()->back();
     }
+
+    public function favorite($routeId)
+    {
+        $user = Auth::user();
+        $route = Route::find($routeId);
+
+        $user->favoriteRoutes()->attach($route);
+
+        return redirect()->back();
+    }
+
+    public function unfavorite($routeId)
+    {
+        $user = Auth::user();
+        $route = Route::find($routeId);
+
+        $user->favoriteRoutes()->detach($route);
+
+        return redirect()->back();
+    }
+
+    public function favorites()
+    {
+        $favoriteRoutes = Auth::user()->favoriteRoutes;
+        return view('route/favorite', compact('favoriteRoutes'));
+    }
+
 }

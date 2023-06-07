@@ -52,6 +52,18 @@
                         </form>
                     @endif
 
+                    @if ($route->isFavorite())
+                        <form action="{{ route('route.unfavorite', $route->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="text-danger">Quitar de favoritos</button>
+                        </form>
+                    @else
+                        <form action="{{ route('route.favorite', $route->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="text-primary">Agregar a favoritos</button>
+                        </form>
+                    @endif
+
                     <div class="mt-2 mb-2">
                     @if(Auth::check() && $route->user_id == Auth::user()->id)
                     <a href="{{ route('route.edit', $route->id) }}" class="mr-2">Editar ruta</a>
