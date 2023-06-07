@@ -13,8 +13,14 @@ class Route extends Model
         'user_id',
         'title',
         'description',
-        'start_location',
-        'end_location',
-        'polyline',
+        'start_location_lat',
+        'start_location_lng',
+        'end_location_lat',
+        'end_location_lng',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

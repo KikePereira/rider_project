@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MotorbikeController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\HomeController;
+
 
 
 
@@ -23,6 +25,10 @@ Route::get('/', function () {
 });
 Route::middleware(['auth'])->group(function () {
 
+    //HOME
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
 //PROFILE
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -33,6 +39,8 @@ Route::get('/profile/update', [ProfileController::class, 'edit'])->name('profile
 //ROUTES
 Route::get('/route/create', [RouteController::class, 'create'])->name('route.create');
 Route::post('/route', [RouteController::class, 'store'])->name('route.store');
+Route::get('/route/{id}', [RouteController::class, 'show'])->name('route.show');
+
 
 
 
@@ -52,9 +60,5 @@ Route::group(['middleware' => ['auth', 'check.motorbike']], function () {
     Route::get('/motorbikes/create', [MotorbikeController::class, 'create'])->name('motorbikes.create');
     Route::post('/motorbikes', [MotorbikeController::class, 'store'])->name('motorbikes.store');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

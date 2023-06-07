@@ -18,8 +18,10 @@ class CreateRoutesTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('start_location');
-            $table->string('end_location');
+            $table->string('start_location_lat');
+            $table->string('start_location_lng');
+            $table->string('end_location_lat');            
+            $table->string('end_location_lng');
             $table->timestamps();
         });
     }

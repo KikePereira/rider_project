@@ -35,39 +35,41 @@ class RouteController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'start_location' => 'required',
-            'end_location' => 'required',
+            'start_location_lat' => 'required',
+            'start_location_lng' => 'required',
+            'end_location_lat' => 'required',
+            'end_location_lng' => 'required',
         ],[
 
         ],[
             'title' => 'titulo',
             'description' => 'descripcion',
-            'start_location' => 'Punto de inicio',
-            'end_location' => 'Punto de llegada',
+            'start_location_lat' => 'Punto de inicio',
+            'start_location_lng' => 'Punto de inicio',
+            'end_location_lat' => 'Punto de llegada',
+            'end_location_lng' => 'Punto de llegada',
+
         ]);
 
         $route = new Route();
         $route->user_id = Auth::user()->id;
         $route->title = $request->title;
         $route->description = $request->description;
-        $route->start_location = $request->start_location;
-        $route->end_location = $request->end_location;
-        $route->polyline = 'aaaaaa';
+        $route->start_location_lat = $request->start_location_lat;
+        $route->start_location_lng = $request->start_location_lng;
+        $route->end_location_lat = $request->end_location_lat;
+        $route->end_location_lng = $request->end_location_lng;
 
         $route->save();
 
-        return redirect()->route('profile');
+        return redirect()->route('home');
     }
 
-    /**
-     * Mostrar los detalles de una ruta de moto.
-     *
-     * @param  \App\Models\Route  $route
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Route $route)
+    public function show($id)
     {
-        return view('routes.show', compact('route'));
+        $route = Route::findOrFail($id);
+
+        return view('route.show', compact('route'));
     }
 
     /**
