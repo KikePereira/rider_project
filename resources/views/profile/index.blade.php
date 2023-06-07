@@ -19,6 +19,8 @@
                     <p><strong>Localidad: </strong>{{ Auth::user()->locality }}</p>
                     <p><strong>Telefono: </strong>{{ Auth::user()->telephone }}</p>
                     <br>
+                    <a href="{{ route('profile.edit', Auth::user()->id) }}" class="text-primary mr-2">Editar perfil</a>
+
                     <a href="{{ route('profile.confirm-delete', Auth::user()->id) }}" class="text-danger">Eliminar perfil</a>
                     <br>
                     <!-- Verificar si el usuario tiene una motocicleta -->
@@ -38,12 +40,10 @@
                     <p><strong>Matricula:</strong> {{ Auth::user()->motorbike->registration_number }}</p>
                     <p><strong>Fecha de adquisicion:</strong> {{ Auth::user()->motorbike->adquired_at }}</p>
                     <br>
+                    <a href="{{ route('motorbike.edit', Auth::user()->motorbike->id) }}" class="text-primary mr-2">Editar perfil</a>
+
                     <a href="{{ route('motorbike.confirm-delete', Auth::user()->motorbike->id) }}" class="text-danger">Eliminar motocicleta</a>
                     @endif
-
-                    <!-- Opciones adicionales -->
-                    <h3 class="text-lg font-medium mt-6 mb-4">Opciones adicionales</h3>
-                    <p>Coloca aquí cualquier opción adicional que desees mostrar en el perfil.</p>
                 </div>
             </div>
         </div>

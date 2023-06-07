@@ -27,6 +27,12 @@ Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::get('/profile/{motorbike}/confirm-delete', [ProfileController::class, 'confirmDelete'])->name('profile.confirm-delete');
 Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+Route::get('/profile/update', [ProfileController::class, 'edit'])->name('profile.edit');
+
+Route::get('/motorbike/{id}/edit', [MotorbikeController::class, 'edit'])->name('motorbike.edit');
+Route::put('/motorbike/{id}', [MotorbikeController::class, 'update'])->name('motorbike.update');
+
 
 //MOTORBIKE
 Route::delete('/motorbike/{motorbike}', [MotorbikeController::class, 'destroy'])->name('motorbike.destroy');

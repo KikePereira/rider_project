@@ -52,6 +52,51 @@ class MotorbikeController extends Controller
         return redirect()->route('profile');
     }
 
+    public function edit($id)
+    {
+        // Obtener la motocicleta por su ID
+        $motorbike = Motorbike::findOrFail($id);
+    
+        // Verificar si la motocicleta pertenece al usuario autenticado
+        if ($motorbike->user_id !== auth()->user()->id) {
+            abort(403); // Acceso no autorizado
+        }
+    
+        // Pasar los datos de la motocicleta a la vista de modificación
+        return view('motorbike.update', compact('motorbike'));
+    }
+    
+
+    public function update(Request $request, $id)
+    {
+        // Obtener la motocicleta a modificar
+        $motorbike = Motorbike::findOrFail($id);
+    
+        // Validar los datos del formulario
+        $validatedData = $request->validate([
+            'brand' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'registration_number' => ['required', 'regex:/^\d{4}[A-Za-z]{3}$/'],
+            'adquired_at' => 'required',
+        ], [
+            'registration_number.unique' => 'Esa matrícula ya está registrada.'
+        ], [
+            'brand' => 'marca',
+            'model' => 'modelo',
+            'year' => 'año',
+            'registration_number' => 'matrícula',
+            'adquired_at' => 'fecha de adquisición',
+        ]);
+    
+        // Actualizar los datos de la motocicleta con los valores validados
+        $motorbike->update($validatedData);
+    
+        // Redirigir a la página de visualización de la motocicleta actualizada
+        return redirect()->route('profile');
+    }
+    
+
     public function destroy()
 {
     // Obtener el usuario autenticado
