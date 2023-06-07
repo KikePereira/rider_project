@@ -49,8 +49,13 @@ class User extends Authenticatable
     ];
 
     public function motorbike()
-{
-    return $this->hasOne(Motorbike::class);
-}
+    {
+        return $this->hasOne(Motorbike::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
 }

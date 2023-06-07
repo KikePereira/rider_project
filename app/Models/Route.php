@@ -30,10 +30,15 @@ class Route extends Model
     }
 
     public function likedByCurrentUser()
-{
-    $userId = auth()->user()->id;
+    {
+        $userId = auth()->user()->id;
 
-    return $this->likes()->where('user_id', $userId)->exists();
-}
+        return $this->likes()->where('user_id', $userId)->exists();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
 }

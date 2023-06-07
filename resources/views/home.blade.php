@@ -29,7 +29,9 @@
                                 <!-- Muestra otros detalles de la ruta según tus necesidades -->
                             </div>
 
-                            <span>{{ $route->likes()->count() }} Likes</span>
+                            <p><span class="mr-2">Likes: {{ $route->likes()->count() }} </span>
+
+                            <span class="ml-2">Comentarios: {{ $route->comments->count() }}</span></p>
 
                             <div class="">
                                 <div id="map-{{ $route->id }}" style="width: auto; height:200px;"></div>

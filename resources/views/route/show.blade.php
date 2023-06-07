@@ -55,6 +55,23 @@
                     <br>
                     <a href="{{ url()->previous() }}" class="btn btn-primary form-control">Volver</a>
                 </div>
+                <form action="{{ route('route.comment', $route->id) }}" method="POST" class="p-2">
+                    @csrf
+                    <div class="form-group">
+                        <textarea name="content" class="form-control" rows="3" placeholder="Escribe tu comentario"></textarea>
+                    </div> <br>
+                    <button type="submit" class=" form-control text-primary text-center">Enviar comentario</button>
+                </form>
+            </div>
+
+            <div >
+            @foreach ($route->comments as $comment)
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4 p-2">
+                    <h4> <strong>{{ $comment->user->nickname }}</strong></h4>
+                    <p class="mt-2">{{ $comment->content }}</p>
+                    <small class="d-flex justify-content-end text-secondary">{{ $comment->created_at }}</small>
+                </div>
+            @endforeach
             </div>
 
             <script>

@@ -49,6 +49,7 @@ Route::get('/routes/search', [HomeController::class, 'search'])->name('route.sea
 Route::post('/route/{id}/like', [RouteController::class, 'like'])->name('route.like');
 Route::delete('/route/{id}/unlike', [RouteController::class, 'unlike'])->name('route.unlike');
 
+Route::post('/route/{id}/comment', [RouteController::class, 'comment'])->name('route.comment');
 
 
 
