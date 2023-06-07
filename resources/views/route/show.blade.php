@@ -69,7 +69,19 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4 p-2">
                     <h4> <strong>{{ $comment->user->nickname }}</strong></h4>
                     <p class="mt-2">{{ $comment->content }}</p>
-                    <small class="d-flex justify-content-end text-secondary">{{ $comment->created_at }}</small>
+
+                    <small class="d-flex justify-content-end text-secondary"> 
+                        
+                    <span class="mr-2">{{ $comment->created_at }}</span>
+
+                    @if($comment->user_id == Auth::user()->id)
+                        <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-danger">Eliminar comentario</button>
+                        </form>
+                    @endif
+                    </small>
                 </div>
             @endforeach
             </div>

@@ -50,6 +50,7 @@ Route::post('/route/{id}/like', [RouteController::class, 'like'])->name('route.l
 Route::delete('/route/{id}/unlike', [RouteController::class, 'unlike'])->name('route.unlike');
 
 Route::post('/route/{id}/comment', [RouteController::class, 'comment'])->name('route.comment');
+Route::delete('/comments/{id}', [RouteController::class, 'comment_destroy'])->name('comment.destroy');
 
 
 

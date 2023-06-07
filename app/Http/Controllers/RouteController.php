@@ -177,4 +177,16 @@ class RouteController extends Controller
 
         return redirect()->route('route.show', $id);
     }
+
+    public function comment_destroy($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        // Verificar si el usuario autenticado es el propietario del comentario
+        if ($comment->user_id == Auth::user()->id) {
+            $comment->delete();
+        }
+
+        return redirect()->back()->with('success', 'Comentario eliminado exitosamente');
+    }
 }
