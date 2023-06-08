@@ -3,16 +3,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Mis Rutas') }}
+            {{ __('Rutas') }} de {{$user->nickname}}
         </h2>
         <br>
         <hr>
         <br>
-        <a href="{{ route('profile.routes') }}" class="text-primary">Ultimas</a>
+        <a href="{{ route('user.routes', ['userId' => $user->id]) }}" class="text-primary">Ultimas</a>
         <span class="separator">|</span>
-        <a href="{{ route('profile.routes_likes') }}" class="text-primary">Mas gustadas</a>
+        <a href="{{ route('user.routes_likes', ['userId' => $user->id]) }}" class="text-primary">Mas gustadas</a>
         <span class="separator">|</span>
-        <a href="{{ route('profile.routes_comments') }}" class="text-primary">Mas comentadas</a>
+        <a href="{{ route('user.routes_comments', ['userId' => $user->id]) }}" class="text-primary">Mas comentadas</a>
     </x-slot>
 
     <div class="py-12">

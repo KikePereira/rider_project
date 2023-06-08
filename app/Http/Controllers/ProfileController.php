@@ -52,10 +52,56 @@ class ProfileController extends Controller
                 ->paginate(5);
         }
     
-        return view('profile.routes', compact('user', 'routes'));
+        return view('profile.user_routes', compact('user', 'routes'));
     }
     
-    
+    public function viewProfileRoutes_likes($userId)
+    {
+        $user = User::findOrFail($userId);
+
+        if (Auth::user()->friends->contains('id', $user->id)) {
+            $routes = $user->routes()
+                ->where(function ($query) {
+                    $query->where('visibility', 'public')
+                        ->orWhere('visibility', 'friends');
+                })
+                ->withCount('likes')
+                ->orderByDesc('likes_count')
+                ->paginate(5);
+        } else {
+            $routes = $user->routes()
+                ->where('visibility', 'public')
+                ->withCount('likes')
+                ->orderByDesc('likes_count')
+                ->paginate(5);
+        }
+
+        return view('profile.user_routes', compact('user', 'routes'));
+    }
+
+    public function viewProfileRoutes_comments($userId)
+    {
+        $user = User::findOrFail($userId);
+
+        if (Auth::user()->friends->contains('id', $user->id)) {
+            $routes = $user->routes()
+                ->where(function ($query) {
+                    $query->where('visibility', 'public')
+                        ->orWhere('visibility', 'friends');
+                })
+                ->withCount('comments')
+                ->orderByDesc('comments_count')
+                ->paginate(5);
+        } else {
+            $routes = $user->routes()
+                ->where('visibility', 'public')
+                ->withCount('comments')
+                ->orderByDesc('comments_count')
+                ->paginate(5);
+        }
+
+        return view('profile.user_routes', compact('user', 'routes'));
+    }
 
     public function confirmDelete()
     {
@@ -129,5 +175,28 @@ class ProfileController extends Controller
 
         return view('profile/routes', compact('routes'));
     }
+
+    public function loadRoutes_likes()
+    {
+        $user = Auth::user();
+        $routes = $user->routes()
+                    ->withCount('likes')
+                    ->orderByDesc('likes_count')
+                    ->paginate(5);
+
+        return view('profile/routes', compact('routes'));
+    }
+
+    public function loadRoutes_comments()
+    {
+        $user = Auth::user();
+        $routes = $user->routes()
+                    ->withCount('comments')
+                    ->orderByDesc('comments_count')
+                    ->paginate(5);
+
+        return view('profile/routes', compact('routes'));
+    }
+
 
 }

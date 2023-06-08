@@ -220,6 +220,25 @@ class RouteController extends Controller
     {
         $favoriteRoutes = Auth::user()->favoriteRoutes()->paginate(5);
         return view('route.favorite', compact('favoriteRoutes'));
-    }    
+    }
+
+    public function favorites_likes()
+    {
+        $favoriteRoutes = Auth::user()->favoriteRoutes()
+                            ->withCount('likes')
+                            ->orderByDesc('likes_count')
+                            ->paginate(5);
+        return view('route.favorite', compact('favoriteRoutes'));
+    }
+
+    public function favorites_comments()
+    {
+        $favoriteRoutes = Auth::user()->favoriteRoutes()
+                            ->withCount('comments')
+                            ->orderByDesc('comments_count')
+                            ->paginate(5);
+        return view('route.favorite', compact('favoriteRoutes'));
+    }
+
 
 }

@@ -28,7 +28,8 @@ Route::middleware(['auth'])->group(function () {
 
     //HOME
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+    Route::get('/home/likes', [HomeController::class, 'likes'])->name('home.likes');
+    Route::get('/home/comments', [HomeController::class, 'comments'])->name('home.comments');
 
 //PROFILE
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
@@ -38,7 +39,12 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 Route::get('/profile/update', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::get('/user/{id}', [ProfileController::class, 'user_profile'])->name('user.profile');
 Route::get('/profile/routes', [ProfileController::class, 'loadRoutes'])->name('profile.routes');
+Route::get('/profile/routes/likes', [ProfileController::class, 'loadRoutes_likes'])->name('profile.routes_likes');
+Route::get('/profile/routes/comments', [ProfileController::class, 'loadRoutes_comments'])->name('profile.routes_comments');
 Route::get('/profile/{userId}/routes', [ProfileController::class, 'viewProfileRoutes'])->name('user.routes');
+Route::get('/profile/{userId}/routes/likes', [ProfileController::class, 'viewProfileRoutes_likes'])->name('user.routes_likes');
+Route::get('/profile/{userId}/routes/comments', [ProfileController::class, 'viewProfileRoutes_comments'])->name('user.routes_comments');
+
 
 
 
@@ -62,6 +68,9 @@ Route::delete('/comments/{id}', [RouteController::class, 'comment_destroy'])->na
 Route::post('route/{id}/favorite', [RouteController::class, 'favorite'])->name('route.favorite');
 Route::post('route/{id}/unfavorite', [RouteController::class, 'unfavorite'])->name('route.unfavorite');
 Route::get('/favorites', [RouteController::class, 'favorites'])->name('route.favorites');
+Route::get('/favorites/likes', [RouteController::class, 'favorites_likes'])->name('favorites.likes');
+Route::get('/favorites/comments', [RouteController::class, 'favorites_comments'])->name('favorites.comments');
+
 
 //MOTORBIKE
 Route::delete('/motorbike/{motorbike}', [MotorbikeController::class, 'destroy'])->name('motorbike.destroy');

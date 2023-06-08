@@ -5,6 +5,15 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Mis Rutas Favoritas') }}
         </h2>
+        <br>
+        <hr>
+        <br>
+        <a href="{{ route('route.favorites') }}" class="text-primary">Ultimas</a>
+        <span class="separator">|</span>
+        <a href="{{ route('favorites.likes') }}" class="text-primary">Mas gustadas</a>
+        <span class="separator">|</span>
+        <a href="{{ route('favorites.comments') }}" class="text-primary">Mas comentadas</a>
+
     </x-slot>
 
     <div class="py-12">

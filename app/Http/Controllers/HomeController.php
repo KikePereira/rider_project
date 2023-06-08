@@ -15,6 +15,26 @@ class HomeController extends Controller
                         ->paginate(5);
         return view('home', compact('routes'));
     }
+
+    public function likes()
+    {
+        $routes = Route::where('visibility', 'public')
+                        ->withCount('likes')
+                        ->orderByDesc('likes_count')
+                        ->paginate(5);
+
+        return view('home', compact('routes'));
+    }
+
+    public function comments()
+{
+    $routes = Route::where('visibility', 'public')
+                    ->withCount('comments')
+                    ->orderByDesc('comments_count')
+                    ->paginate(5);
+
+    return view('home', compact('routes'));
+}
     
     
     public function search(Request $request)

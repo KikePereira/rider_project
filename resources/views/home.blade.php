@@ -13,6 +13,16 @@
             </form>
         </div>
         </div>
+        <br>
+        <hr>
+        <br>
+        <a href="{{ route('home') }}" class="text-primary">Ultimas</a>
+        <span class="separator">|</span>
+        <a href="{{ route('home.likes') }}" class="text-primary">Mas gustadas</a>
+        <span class="separator">|</span>
+        <a href="{{ route('home.comments') }}" class="text-primary">Mas comentadas</a>
+
+
     </x-slot>
 
     <div class="py-12">
