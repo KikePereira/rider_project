@@ -62,4 +62,22 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Route::class, 'favorites', 'user_id', 'route_id');
     }
+
+    public function friendships()
+    {
+        return $this->hasMany(Friendship::class, 'user_id');
+    }
+
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id')
+            ->wherePivot('accepted', true);
+    }
+
+    public function friendRequests()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
+            ->wherePivot('accepted', false);
+    }
+
 }

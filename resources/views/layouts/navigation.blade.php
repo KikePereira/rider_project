@@ -18,6 +18,16 @@
                     <x-nav-link :href="route('route.favorites')" :active="request()->routeIs('route.favorites')">
                         {{ __('Favoritas') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('friends')" :active="request()->routeIs('friends')">
+                        {{ __('Amigos') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('friend.show')" :active="request()->routeIs('friend.show')">
+                        {{ __('Peticiones Amistad') }} 
+                        @if(Auth::user()->friendRequests()->count() > 0)
+                            <span class="bg-success text-white p-1 rounded ml-2">{{ Auth::user()->friendRequests()->count() }}</span>
+                        @endif
+                    </x-nav-link>
                 </div>
             </div>
 

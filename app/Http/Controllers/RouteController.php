@@ -212,8 +212,8 @@ class RouteController extends Controller
 
     public function favorites()
     {
-        $favoriteRoutes = Auth::user()->favoriteRoutes;
-        return view('route/favorite', compact('favoriteRoutes'));
-    }
+        $favoriteRoutes = Auth::user()->favoriteRoutes()->paginate(5);
+        return view('route.favorite', compact('favoriteRoutes'));
+    }    
 
 }

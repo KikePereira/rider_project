@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MotorbikeController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FriendshipController;
 
 
 
@@ -64,6 +65,12 @@ Route::get('/motorbike/{id}/edit', [MotorbikeController::class, 'edit'])->name('
 Route::put('/motorbike/{id}', [MotorbikeController::class, 'update'])->name('motorbike.update');
 Route::get('/profile/{motorbike}/confirm-delete', [ProfileController::class, 'confirmDelete'])->name('profile.confirm-delete');
 
+Route::get('/friends', [FriendshipController::class, 'index'])->name('friends');
+Route::post('/friends/send', [FriendshipController::class, 'send'])->name('friends.send');
+Route::get('/friend-requests', [FriendshipController::class, 'show'])->name('friend.show');
+Route::put('/friend/accepted/{friendshipId}', [FriendshipController::class, 'accepted'])->name('friend.accepted');
+Route::delete('/friend/deny/{friendshipId}', [FriendshipController::class, 'deny'])->name('friend.deny');
+Route::delete('/friend/{friendshipId}', [FriendshipController::class, 'destroy'])->name('friend.destroy');
 
 });
 

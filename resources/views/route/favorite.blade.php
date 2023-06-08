@@ -82,6 +82,10 @@
                                     });
                             </script>
                             @endforeach
+                            <div class="pagination d-flex justify-content-center">
+                                {{ $favoriteRoutes->render('pagination::bootstrap-4') }}
+                            </div>
+
                     @else
                     <div class="alert alert-warning mt-4 text-center">
                         <p>No tienes rutas favoritas.</p>
