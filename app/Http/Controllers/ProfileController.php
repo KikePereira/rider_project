@@ -198,5 +198,16 @@ class ProfileController extends Controller
         return view('profile/routes', compact('routes'));
     }
 
+    public function loadRoutes_privates()
+{
+    $user = Auth::user();
+    $routes = $user->routes()
+                ->where('visibility', 'private') // Agrega esta condición para obtener solo las rutas privadas
+                ->latest()
+                ->paginate(5);
+
+    return view('profile/routes', compact('routes'));
+}
+
 
 }

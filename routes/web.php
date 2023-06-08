@@ -41,12 +41,10 @@ Route::get('/user/{id}', [ProfileController::class, 'user_profile'])->name('user
 Route::get('/profile/routes', [ProfileController::class, 'loadRoutes'])->name('profile.routes');
 Route::get('/profile/routes/likes', [ProfileController::class, 'loadRoutes_likes'])->name('profile.routes_likes');
 Route::get('/profile/routes/comments', [ProfileController::class, 'loadRoutes_comments'])->name('profile.routes_comments');
+Route::get('/profile/routes/privates', [ProfileController::class, 'loadRoutes_privates'])->name('profile.routes_privates');
 Route::get('/profile/{userId}/routes', [ProfileController::class, 'viewProfileRoutes'])->name('user.routes');
 Route::get('/profile/{userId}/routes/likes', [ProfileController::class, 'viewProfileRoutes_likes'])->name('user.routes_likes');
 Route::get('/profile/{userId}/routes/comments', [ProfileController::class, 'viewProfileRoutes_comments'])->name('user.routes_comments');
-
-
-
 
 
 //ROUTES
