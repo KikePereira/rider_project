@@ -41,6 +41,19 @@
                             @enderror
                         </div>
 
+                        <div class="mb-4">
+                            <label for="visibility" class="block text-gray-700 text-sm font-bold mb-2">Visibilidad:</label>
+                            <select name="visibility" id="visibility" class="border border-gray-300 rounded w-full py-2 px-3">
+                                <option value="public" {{ old('visibility') == 'public' ? 'selected' : '' }}>Pública</option>
+                                <option value="private" {{ old('visibility') == 'private' ? 'selected' : '' }}>Privada</option>
+                                <option value="friends" {{ old('visibility') == 'friends' ? 'selected' : '' }}>Amigos</option>
+                            </select>
+                            @error('visibility')
+                                <p class="text-danger text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+
 
                         <div class="mb-4" hidden>
                             <label for="start_location_lat" class="block text-gray-700 text-sm font-bold mb-2">Ubicación de inicio Lat:</label>

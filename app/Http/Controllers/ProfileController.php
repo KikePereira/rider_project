@@ -95,4 +95,15 @@ class ProfileController extends Controller
 
         return view('profile.show', compact('user'));
     }
+
+    public function loadRoutes()
+    {
+        $user = Auth::user();
+        $routes = $user->routes()
+                    ->latest()
+                    ->paginate(5);
+
+        return view('profile/routes', compact('routes'));
+    }
+
 }

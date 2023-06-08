@@ -5,6 +5,11 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Mi perfil') }}
         </h2>
+        
+        <hr class="mt-2">
+        <div class="mt-2">        
+            <a href="{{ route('profile.routes') }}" class="text-primary">Ver mis rutas</a>
+        </div>
     </x-slot>
 
     <div class="py-12">

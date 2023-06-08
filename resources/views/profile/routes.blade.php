@@ -3,15 +3,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Mis Rutas Favoritas') }}
+            {{ __('Mis Rutas') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-                    @if ($favoriteRoutes->count() > 0)
-                            @foreach ($favoriteRoutes as $route)
+                    @if ($routes->count() > 0)
+                            @foreach ($routes as $route)
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4">
                                 <div class="p-6 bg-white border-b border-gray-200">
                                     <div class="grid grid-cols-2 gap-4 row">
@@ -26,7 +26,6 @@
                                             </a>
                                             <br>
                                             <p>{{ $route->description }}</p>
-                                            <!-- Muestra otros detalles de la ruta según tus necesidades -->
                                         </div>
 
                                         @if ($route->visibility == 'friends')
@@ -40,6 +39,7 @@
                                         <p><span class="mr-2">Likes: {{ $route->likes()->count() }} </span>
 
                                         <span class="ml-2">Comentarios: {{ $route->comments->count() }}</span></p>
+
 
                                         <div class="">
                                             <div id="map-{{ $route->id }}" style="width: auto; height:200px;"></div>
@@ -91,7 +91,7 @@
                             </script>
                             @endforeach
                             <div class="pagination d-flex justify-content-center">
-                                {{ $favoriteRoutes->render('pagination::bootstrap-4') }}
+                                {{ $routes->render('pagination::bootstrap-4') }}
                             </div>
 
                     @else

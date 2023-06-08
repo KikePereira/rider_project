@@ -53,6 +53,12 @@ class User extends Authenticatable
         return $this->hasOne(Motorbike::class);
     }
 
+    public function routes()
+    {
+        return $this->hasMany(Route::class);
+    }
+
+
     public function comments()
     {
         return $this->hasMany(Comment::class);

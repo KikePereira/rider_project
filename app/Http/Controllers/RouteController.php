@@ -40,6 +40,7 @@ class RouteController extends Controller
             'start_location_lng' => 'required',
             'end_location_lat' => 'required',
             'end_location_lng' => 'required',
+            'visibility' => 'required',
         ],[
 
         ],[
@@ -49,7 +50,7 @@ class RouteController extends Controller
             'start_location_lng' => 'Punto de inicio',
             'end_location_lat' => 'Punto de llegada',
             'end_location_lng' => 'Punto de llegada',
-
+            'visibility' => 'visibilidad',
         ]);
 
         $route = new Route();
@@ -60,6 +61,7 @@ class RouteController extends Controller
         $route->start_location_lng = $request->start_location_lng;
         $route->end_location_lat = $request->end_location_lat;
         $route->end_location_lng = $request->end_location_lng;
+        $route->visibility = $request->visibility;
 
         $route->save();
 
@@ -100,6 +102,7 @@ class RouteController extends Controller
             'start_location_lng' => 'required',
             'end_location_lat' => 'required',
             'end_location_lng' => 'required',
+            'visibility' => 'required',
         ], [
             'title.required' => 'El campo título es requerido',
             'description.required' => 'El campo descripción es requerido',
@@ -117,6 +120,7 @@ class RouteController extends Controller
             'start_location_lng' => $request->start_location_lng,
             'end_location_lat' => $request->end_location_lat,
             'end_location_lng' => $request->end_location_lng,
+            'visibility' => $request->visibility,
         ]);
     
         return redirect()->route('route.show', $route->id);

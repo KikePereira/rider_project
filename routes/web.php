@@ -37,6 +37,8 @@ Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('pro
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 Route::get('/profile/update', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::get('/user/{id}', [ProfileController::class, 'user_profile'])->name('user.profile');
+Route::get('/profile/routes', [ProfileController::class, 'loadRoutes'])->name('profile.routes');
+
 
 
 //ROUTES

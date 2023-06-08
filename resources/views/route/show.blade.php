@@ -26,6 +26,14 @@
                                 <p> <strong> Moto: </strong> {{ $route->user->motorbike->brand }} {{ $route->user->motorbike->model }} {{ $route->user->motorbike->year }}</p>
                                 @endif
                             </a>
+                            <br>
+                                        @if ($route->visibility == 'friends')
+                                            <span class="text-secondary">Visibilidad: Amigos</span>
+                                        @elseif ($route->visibility == 'private')
+                                            <span class="text-secondary">Visibilidad: Privado</span>
+                                        @elseif ($route->visibility == 'public')
+                                            <span class="text-secondary">Visibilidad: Público</span>
+                                        @endif
                             <p class="d-flex justify-content-end text-secondary">{{ $route->created_at }}</p>
                         </div>
 

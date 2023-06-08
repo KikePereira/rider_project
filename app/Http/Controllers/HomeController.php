@@ -10,19 +10,25 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $routes = Route::paginate(5); // Obtén las rutas paginadas de 5 en 5
+        $routes = Route::where('visibility', 'public')
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(5);
         return view('home', compact('routes'));
     }
+    
     
     public function search(Request $request)
     {
         $user = $request->input('nickname');
-
-        // Obtén las rutas filtradas por el nombre de usuario
-        $routes = Route::whereHas('user', function ($query) use ($user) {
-            $query->where('nickname', 'like', '%' . $user . '%');
-        })->paginate(5);
-
+    
+        $routes = Route::where('visibility', 'public')
+                        ->whereHas('user', function ($query) use ($user) {
+                            $query->where('nickname', 'like', '%' . $user . '%');
+                        })
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(5);
+    
         return view('home', compact('routes'));
     }
+    
 }

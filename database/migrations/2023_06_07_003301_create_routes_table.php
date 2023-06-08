@@ -22,6 +22,7 @@ class CreateRoutesTable extends Migration
             $table->string('start_location_lng');
             $table->string('end_location_lat');            
             $table->string('end_location_lng');
+            $table->string('visibility');
             $table->integer('likes')->default(0);
             $table->timestamps();
         });
