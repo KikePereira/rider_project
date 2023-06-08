@@ -43,6 +43,19 @@
                             <input type="text" name="start_location_lng" id="start_location_lng" value="{{ $route->start_location_lng }}" class="form-control">
                         </div>
 
+                        <div class="mb-4">
+                            <label for="visibility" class="block text-gray-700 text-sm font-bold mb-2">Visibilidad:</label>
+                            <select name="visibility" id="visibility" class="border border-gray-300 rounded w-full py-2 px-3">
+                                <option value="public" {{ old('visibility', $route->visibility) == 'public' ? 'selected' : '' }}>Pública</option>
+                                <option value="private" {{ old('visibility', $route->visibility) == 'private' ? 'selected' : '' }}>Privada</option>
+                                <option value="friends" {{ old('visibility', $route->visibility) == 'friends' ? 'selected' : '' }}>Amigos</option>
+                            </select>
+                            @error('visibility')
+                                <p class="text-danger text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+
                         <div class="mb-4" hidden>
                             <label for="end_location_lat" class="block text-gray-700 text-sm font-bold mb-2">Ubicación de fin Lat:</label>
                             <input type="text" name="end_location_lat" id="end_location_lat" value="{{ $route->end_location_lat }}" class="form-control">

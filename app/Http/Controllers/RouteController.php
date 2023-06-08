@@ -74,7 +74,7 @@ class RouteController extends Controller
 
         return view('route.show', compact('route'));
     }
-
+    
     /**
      * Mostrar el formulario para editar una ruta de moto.
      *
@@ -112,7 +112,9 @@ class RouteController extends Controller
             'end_location_lng.required' => 'El campo Punto de llegada (Lng) es requerido',
         ]);
     
+
         $route = Route::findOrFail($id);
+
         $route->update([
             'title' => $request->title,
             'description' => $request->description,
