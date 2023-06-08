@@ -33,6 +33,30 @@ class ProfileController extends Controller
         return redirect()->route('login');
     }
 
+    public function viewProfileRoutes($userId)
+    {
+        $user = User::findOrFail($userId);
+    
+        if (Auth::user()->friends->contains('id', $user->id)) {
+            $routes = $user->routes()
+                ->where(function ($query) {
+                    $query->where('visibility', 'public')
+                        ->orWhere('visibility', 'friends');
+                })
+                ->orderByDesc('created_at')
+                ->paginate(5);
+        } else {
+            $routes = $user->routes()
+                ->where('visibility', 'public')
+                ->orderByDesc('created_at')
+                ->paginate(5);
+        }
+    
+        return view('profile.routes', compact('user', 'routes'));
+    }
+    
+    
+
     public function confirmDelete()
     {
         return view('profile.confirm-delete');

@@ -38,6 +38,8 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 Route::get('/profile/update', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::get('/user/{id}', [ProfileController::class, 'user_profile'])->name('user.profile');
 Route::get('/profile/routes', [ProfileController::class, 'loadRoutes'])->name('profile.routes');
+Route::get('/profile/{userId}/routes', [ProfileController::class, 'viewProfileRoutes'])->name('user.routes');
+
 
 
 

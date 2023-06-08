@@ -3,8 +3,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Perfil de Usuario') }}
+            {{ __('Perfil de ') }} {{$user->nickname}}
         </h2>
+        <br>
+            <hr>
+            <br>
+            <a href="{{ route('user.routes', ['userId' => $user->id]) }}" class="text-primary">Ver Rutas</a>
+
     </x-slot>
 
     <div class="py-12">
