@@ -80,13 +80,32 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+
+        <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('Inicio') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('route.favorites')" :active="request()->routeIs('route.favorites')">
+                {{ __('Favorito') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('friends')" :active="request()->routeIs('friends')">
+                {{ __('Amigos') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('friend.show')" :active="request()->routeIs('friend.show')">
+                {{ __('Peticiones de Amistad') }}
+
+                @if(Auth::user()->friendRequests()->count() > 0)
+                            <span class="bg-success text-white p-1 rounded ml-2">{{ Auth::user()->friendRequests()->count() }}</span>
+                        @endif
+            </x-responsive-nav-link>
+
         <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
         {{ __('Perfil') }}
         </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('Inicio') }}
-            </x-responsive-nav-link>
+     
         </div>
 
         <!-- Responsive Settings Options -->
