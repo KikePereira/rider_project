@@ -106,7 +106,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                                                                <span class="text-danger"> Logout</span>
+                        <span class="text-danger"> Logout</span>
 
                     </x-responsive-nav-link>
                 </form>
