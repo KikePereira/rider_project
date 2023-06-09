@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/messages/{friend}', [MessageController::class, 'viewConversation'])->name('messages.conversation');
     Route::post('/messages/{friend}', [MessageController::class, 'send'])->name('messages.send');
     Route::get('/conversations', [MessageController::class, 'index'])->name('messages.conversations');
+    Route::delete('/messages/{friend}', [MessageController::class, 'destroy'])->name('messages.destroy');
+
 
 
 

@@ -36,13 +36,13 @@
             
                     @if ($friends->count() > 0)
                             @foreach ($friends as $friend)
-                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-3">
                                 <div class="p-6 bg-white border-b border-gray-200">
                                     <a href="{{ route('user.profile', $friend->id) }}" class="">
                                         <p> <strong>{{ $friend->nickname }}</strong> ( {{ $friend->name}} {{ $friend->first_surname}} {{ $friend->second_surname}}) </p>
                                     </a>
 
-                                    <a href="{{ route('messages.conversation', $friend->id) }}" class="text-primary">Ver conversación</a>
+                                    <a href="{{ route('messages.conversation', $friend->id) }}" class="text-primary">Conversacion</a>
                                     
                                     <form action="{{ route('friend.destroy', $friend->id) }}" method="POST">
                                         @csrf

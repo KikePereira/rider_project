@@ -55,4 +55,25 @@ public function index()
     return view('messages/open_conver', compact('conversations'));
 }
 
+public function destroy($friendId)
+{
+    // Obtener el ID del usuario autenticado
+    $userId = auth()->user()->id;
+
+    // Buscar los mensajes que pertenecen a la conversación entre el usuario autenticado y el amigo
+    $messages = Message::where(function ($query) use ($userId, $friendId) {
+        $query->where('sender_id', $userId)->where('receiver_id', $friendId);
+    })->orWhere(function ($query) use ($userId, $friendId) {
+        $query->where('sender_id', $friendId)->where('receiver_id', $userId);
+    })->get();
+
+    // Eliminar los mensajes de la conversación
+    foreach ($messages as $message) {
+        $message->delete();
+    }
+
+    // Redirigir a la página de conversaciones abiertas o a donde desees
+    return redirect()->route('messages.conversations')->with('success', 'Conversación eliminada exitosamente');
+}
+
 }
