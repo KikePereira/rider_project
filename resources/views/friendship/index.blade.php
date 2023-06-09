@@ -41,6 +41,9 @@
                                     <a href="{{ route('user.profile', $friend->id) }}" class="">
                                         <p> <strong>{{ $friend->nickname }}</strong> ( {{ $friend->name}} {{ $friend->first_surname}} {{ $friend->second_surname}}) </p>
                                     </a>
+
+                                    <a href="{{ route('messages.conversation', $friend->id) }}" class="text-primary">Ver conversación</a>
+                                    
                                     <form action="{{ route('friend.destroy', $friend->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')

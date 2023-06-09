@@ -6,6 +6,8 @@ use App\Http\Controllers\MotorbikeController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FriendshipController;
+use App\Http\Controllers\MessageController;
+
 
 
 
@@ -30,6 +32,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/home/likes', [HomeController::class, 'likes'])->name('home.likes');
     Route::get('/home/comments', [HomeController::class, 'comments'])->name('home.comments');
+
+    Route::get('/messages/{friend}', [MessageController::class, 'viewConversation'])->name('messages.conversation');
+    Route::post('/messages/{friend}', [MessageController::class, 'send'])->name('messages.send');
+    Route::get('/conversations', [MessageController::class, 'index'])->name('messages.conversations');
+
+
 
 //PROFILE
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile');

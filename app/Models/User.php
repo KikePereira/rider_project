@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -85,6 +86,22 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
             ->wherePivot('accepted', false);
+    }
+
+        /**
+     * Obtener los mensajes enviados por el usuario.
+     */
+    public function sentMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    /**
+     * Obtener los mensajes recibidos por el usuario.
+     */
+    public function receivedMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
     }
 
 }
