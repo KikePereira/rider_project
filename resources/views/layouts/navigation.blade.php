@@ -100,6 +100,10 @@
                         @endif
             </x-responsive-nav-link>
 
+            <x-responsive-nav-link :href="route('messages.conversations')" :active="request()->routeIs('messages.conversations')">
+                {{ __('Chats') }}
+            </x-responsive-nav-link>
+
 
 
      
