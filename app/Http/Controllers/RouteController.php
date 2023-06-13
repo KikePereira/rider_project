@@ -185,7 +185,12 @@ class RouteController extends Controller
     public function comment(Request $request, $id)
     {
         // Validar los datos del formulario de comentarios si es necesario
-
+        $validatedData = $request->validate([
+            'content' => 'required',
+        ], [
+            'title.required' => 'El comentario no puede estar vacio',
+        ]);
+        
         // Crear un nuevo comentario
         $comment = new Comment();
         $comment->route_id = $id;
