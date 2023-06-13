@@ -11,8 +11,8 @@
         <!-- JS de Bootstrap (requiere jQuery) -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <title>Rider</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
               <!-- Google maps -->
               <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuLSpknm3IhzaqS5KJodp18NEOO8_LgzA&callback=initMap" async
         defer></script>
