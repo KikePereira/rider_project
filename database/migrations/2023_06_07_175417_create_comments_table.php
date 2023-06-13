@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('route_id');
             $table->unsignedBigInteger('user_id');
             $table->text('content');
+            $table->boolean('is_report')->default(0);
             $table->timestamps();
 
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');

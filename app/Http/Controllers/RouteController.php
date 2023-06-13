@@ -158,6 +158,20 @@ class RouteController extends Controller
         return redirect()->back();
     }
 
+    public function report($routeId)
+{
+    $route = Route::find($routeId);
+
+    if ($route) {
+        $route->is_report = 1;
+        $route->save();
+    }
+
+    // Puedes realizar otras acciones aquí si es necesario
+
+    return redirect()->back();
+}
+
     public function unlike($id)
     {
         $route = Route::findOrFail($id);
@@ -182,6 +196,20 @@ class RouteController extends Controller
         // Redireccionar a la página de la ruta o realizar cualquier otra acción después de guardar el comentario
 
         return redirect()->route('route.show', $id);
+    }
+
+    public function comment_report($id)
+    {
+        $comment = Comment::find($id);
+    
+        if ($comment) {
+            $comment->is_report = 1;
+            $comment->save();
+        }
+    
+        // Puedes realizar otras acciones aquí si es necesario
+    
+        return redirect()->back();
     }
 
     public function comment_destroy($id)

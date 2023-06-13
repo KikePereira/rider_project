@@ -15,7 +15,7 @@ class CreateRoutesTable extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id');
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('start_location_lat');
@@ -24,7 +24,10 @@ class CreateRoutesTable extends Migration
             $table->string('end_location_lng');
             $table->string('visibility');
             $table->integer('likes')->default(0);
+            $table->boolean('is_report')->default(0);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

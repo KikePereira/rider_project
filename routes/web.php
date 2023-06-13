@@ -7,6 +7,8 @@ use App\Http\Controllers\RouteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FriendshipController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\AdminController;
+
 
 
 
@@ -26,6 +28,20 @@ use App\Http\Controllers\MessageController;
 Route::get('/', function () {
     return view('auth/login');
 });
+
+Route::group(['middleware' => 'admin'], function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::post('/admin/make/{userId}', [AdminController::class, 'makeAdmin'])->name('admin.make');
+    Route::post('/admin/remove/{userId}', [AdminController::class, 'removeAdmin'])->name('admin.remove');
+    Route::delete('/admin/delete/{userId}',[ProfileController::class, 'destroy'])->name('admin.userDelete');
+    Route::get('/admin/routes/report', [AdminController::class, 'getReportedRoutes'])->name('admin.routes_report');
+    Route::post('admin/routes/accept_report/{id}', [AdminController::class, 'acceptReport'])->name('admin.routes_report_accept');
+    Route::post('admin/routes/deny_report/{id}', [AdminController::class, 'denyReport'])->name('admin.routes_report_deny');
+    Route::get('/admin/comment/report', [AdminController::class, 'getReportedComments'])->name('admin.comment_report');
+    Route::post('admin/routes/accept_comment_report/{id}', [AdminController::class, 'acceptCommentReport'])->name('admin.comment_report_accept');
+    Route::post('admin/routes/deny_comment_report/{id}', [AdminController::class, 'denyCommentReport'])->name('admin.comment_report_deny');
+});
+
 Route::middleware(['auth'])->group(function () {
 
     //HOME
@@ -66,12 +82,14 @@ Route::put('/route/{route}', [RouteController::class, 'update'])->name('route.up
 Route::get('route/{id}/confirm-delete', [RouteController::class, 'confirmDelete'])->name('route.confirm-delete');
 Route::delete('route/{id}', [RouteController::class, 'destroy'])->name('route.destroy');
 Route::get('/routes/search', [HomeController::class, 'search'])->name('route.search');
+Route::get('/route/report/{id}', [RouteController::class, 'report'])->name('route.report');
 
 Route::post('/route/{id}/like', [RouteController::class, 'like'])->name('route.like');
 Route::delete('/route/{id}/unlike', [RouteController::class, 'unlike'])->name('route.unlike');
 
 Route::post('/route/{id}/comment', [RouteController::class, 'comment'])->name('route.comment');
 Route::delete('/comments/{id}', [RouteController::class, 'comment_destroy'])->name('comment.destroy');
+Route::get('/comment/report/{id}', [RouteController::class, 'comment_report'])->name('comment.report');
 
 Route::post('route/{id}/favorite', [RouteController::class, 'favorite'])->name('route.favorite');
 Route::post('route/{id}/unfavorite', [RouteController::class, 'unfavorite'])->name('route.unfavorite');
